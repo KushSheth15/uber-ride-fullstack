@@ -3,10 +3,11 @@ const userModel = require("../models/user.model")
 module.exports.createUser = async ({
     firstname,lastname,email,password
 })=>{
-    if(!firstname || !email || !password){
+    if( !email || !password){
         throw new Error("All 'fields are required!");
     }
-    const user = userModel.create({
+    console.log("Service calling.....");
+    const user =await userModel.create({
         fullName:{
             firstname,lastname
         },

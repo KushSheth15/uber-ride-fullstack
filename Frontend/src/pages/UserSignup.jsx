@@ -18,14 +18,15 @@ const UserSignup = () => {
     const submitHandler = async (e)=>{
       e.preventDefault();
       const newUser = {
-        fullName:{
-          firstName:firstName,
-          lastName:lastName
-        },
+        firstname:firstName,
+        lastname:lastName,
         email:email,
         password:password
       }
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/register`,newUser);
+      console.log("USER DATA ==> ",newUser);
+      console.log("ENV URL ==> ",import.meta.env.VITE_BASE_URL);
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,newUser);
+      console.log("Response ===> ",response);
       if(response.status === 201){
         const data = response.data
         setUser(data.user)

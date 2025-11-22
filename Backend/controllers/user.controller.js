@@ -8,7 +8,9 @@ module.exports.registerUser = async (req,res,next)=>{
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()});
     }
+    console.log("API Calling....")
     const {firstname,lastname,email,password} = req.body;
+    console.log("Payload :",req.body);
     const isUserAlreadyExist = await userModel.findOne({email});
     if(isUserAlreadyExist){
         return res.status(400).json({message:'User already exist'});
