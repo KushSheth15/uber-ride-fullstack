@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {UserDataContext} from '../context/userContext';
+import {UserDataContext} from '../context/UserContext';
 
 const UserSignup = () => {
 
@@ -13,7 +13,7 @@ const UserSignup = () => {
 
     const navigate = useNavigate();
     // eslint-disable-next-line no-unused-vars
-    const {user , setUser} = React.useContext(UserDataContext);
+    const {user,setUser} = React.useContext(UserDataContext);
   
     const submitHandler = async (e)=>{
       e.preventDefault();
@@ -30,6 +30,7 @@ const UserSignup = () => {
       if(response.status === 201){
         const data = response.data
         setUser(data.user)
+        localStorage.setItem('token',data.token)
         navigate('/login')
       }
 

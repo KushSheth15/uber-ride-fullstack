@@ -18,7 +18,7 @@ router.post(
   userController.registerUser
 );
 
-router.post("/loin",[
+router.post("/login",[
   body('email').isEmail().withMessage("Invalid Email"),
   body("password").isLength({min:6}).withMessage("Password Must be 6 character")
 ],
