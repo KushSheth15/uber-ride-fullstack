@@ -4,7 +4,7 @@ const { body } = require("express-validator");
 const captainController = require("../controllers/captain.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post('/reister',[
+router.post('/register',[
     body('email').isEmail().withMessage('Invalid Email')
 ], captainController.registerCaptain);
 

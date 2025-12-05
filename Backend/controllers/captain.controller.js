@@ -13,7 +13,7 @@ module.exports.registerCaptain = async(req,res,next)=>{
     if(isCaptainAlreadyExist){
         return res.status(400).json({message:'Captain already exist'});
     }
-    const hashedPassword = await captainModel.hashedPassword(password);
+    const hashedPassword = await captainModel.hashPassword(password);
 
 
     const captain = await captainService.createCaptain({
@@ -27,7 +27,7 @@ module.exports.registerCaptain = async(req,res,next)=>{
         vehicleType:vehicle.vehicleType
     });
 
-    const token = user.generateAuthToken();
+    const token = captain.generateAuthToken();
     res.status(201).json({token,captain});
 }
 
@@ -47,7 +47,7 @@ module.exports.loginCaptain = async(req,res,next)=>{
     } 
     const token = captain.generateAuthToken();
     res.cookie("token",token);
-    res.status(201).json({token,captain});
+    res.status(200).json({token,captain});
 }
 
 module.exports.getCaptainProfile = async(req,res,next)=>{
